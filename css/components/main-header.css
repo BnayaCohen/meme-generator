@@ -25,8 +25,8 @@
 }
 
 .menu-toggle {
-    position: absolute;
-    right: 30px;
+    /* position: absolute;
+    right: 30px; */
     background-color: #fefefe;
     color: #21ac91;
     padding:0.5rem 0.55rem ;
