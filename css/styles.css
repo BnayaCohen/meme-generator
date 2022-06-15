@@ -12,7 +12,8 @@
 @import 'components/filter.css';
 @import 'components/meme-editor.css';
 @import 'components/gallery.css';
+@import 'components/screen.css';
 /*@import 'components/footer.css'; */
 
 /* Media Queries */
-/* @import 'mq/mq.css'; */
+@import 'mq/mq.css';

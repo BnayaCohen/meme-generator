@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+    <div class="main-screen" onclick="onToggleMenu()"></div>
 
 <head>
     <meta charset="UTF-8">
@@ -15,10 +16,11 @@
         <div>MEME GEN</div>
         <nav>
             <ul class="main-nav clean-list flex">
-                <li>Gallery</li>
+                <li onclick="onShowGallery()">Gallery</li>
                 <li>About</li>
             </ul>
         </nav>
+        <div class="menu-toggle fa fa-nav-sign" onclick="onToggleMenu()"></div>
     </header>
 
     <main class="main-layout">
@@ -34,7 +36,7 @@
 
         <section class="edit-container flex">
             <div class="edited-meme">
-                <canvas class="edit-meme-canvas" height="300" width="300"></canvas>
+                <canvas class="edit-meme-canvas" height="500" width="500"></canvas>
             </div>
 
             <div class="editing-features">

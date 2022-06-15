@@ -24,3 +24,13 @@
     padding: 0;
     list-style-type: none;
 }
+
+/* FONT AWESOME */
+
+.fa {
+    font-family: fa;
+}
+
+.fa.fa-nav-sign::before {
+    content: "\f0c9";
+}

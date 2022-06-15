@@ -71,3 +71,7 @@ function onDeleteLine(){
     deleteFocusedLine()
     renderMeme()
 }
+
+function onToggleMenu() {
+    document.body.classList.toggle('menu-open')
+}

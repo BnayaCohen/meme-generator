@@ -102,5 +102,10 @@ function _createImages() {
         { id: 3, url: 'meme-imgs/3.jpg', keywords: ['baby', 'dog'] },
         { id: 4, url: 'meme-imgs/4.jpg', keywords: ['baby', 'dog'] },
         { id: 5, url: 'meme-imgs/5.jpg', keywords: ['baby', 'dog'] },
+        { id: 6, url: 'meme-imgs/6.jpg', keywords: ['baby', 'dog'] },
+        { id: 7, url: 'meme-imgs/7.jpg', keywords: ['baby', 'dog'] },
+        { id: 8, url: 'meme-imgs/8.jpg', keywords: ['baby', 'dog'] },
+        { id: 9, url: 'meme-imgs/9.jpg', keywords: ['baby', 'dog'] },
+
     ]
 }

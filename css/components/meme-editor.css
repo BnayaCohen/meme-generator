@@ -19,8 +19,8 @@
     box-shadow: 1px 5px 0 #bbc4d111, inset 0 5px 0 #ffffff11;
     border-radius: 30px;
     background-color: #ebeef311;
-    margin-left: 15px;
-    padding: 20px 25px;
+    padding:15px;
+    max-width: 350px;
 }
 
 .editing-features .meme-text-input {

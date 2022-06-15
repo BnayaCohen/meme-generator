@@ -1,4 +1,7 @@
 /* vars */
 :root {
     --bg-header: #5970c1;
+
+    --gallery-img-width:200px;
+    --gallery-img-height:200px;
 }

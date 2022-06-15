@@ -19,3 +19,9 @@ function onImageSelect(imgIdx) {
     document.querySelector('.edit-container').style.display = 'flex'
 }
 
+function onShowGallery(){
+    document.querySelector('.gallery-container').style.display = 'grid'
+    document.querySelector('.filters-container').style.display = 'block'
+    document.querySelector('.edit-container').style.display = 'none'
+    document.body.classList.remove('menu-open')
+}
