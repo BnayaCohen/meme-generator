@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme-Gen</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body onload="init()">
+
+    <header class="main-header main-layout flex space-between align-center">
+        <div>MEME GEN</div>
+        <nav>
+            <ul class="main-nav clean-list flex">
+                <li>Gallery</li>
+                <li>About</li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-layout">
+        <section class="filters-container flex content-center">
+            <input type="text" placeholder="Search">
+            <button>Funny Animal Men Woman comic smile</button>
+            <button>More</button>
+        </section>
+
+        <section class="gallery-container">
+            <!-- INJECTED GALLERY IMAGES FROM JS -->
+        </section>
+
+        <section class="edit-container flex">
+            <div class="edited-meme">
+                <canvas class="edit-meme-canvas" height="300" width="300"></canvas>
+            </div>
+
+            <div class="editing-features">
+                <input class="meme-text-input" type="text" onkeyup="setLineText(this)" placeholder="Enter Text Here">
+               <div class="line-change-btns">
+                <button class="line-switch btn" onclick="onSwitchLine()">S</button>
+                <button class="line-add btn" onclick="onAddLine()">A</button>
+                <button class="line-delete btn" onclick="onDeleteLine()">D</button>
+               </div>
+                <div class="modify-btns">
+                    <button class="font-increase btn" onclick="onChangeFontSize(1)">A+</button>
+                    <button class="font-decrease btn" onclick="onChangeFontSize(-1)">A-</button>
+                    <input class="font-clr-change btn" type="color" name="font-clr-change" onchange="onChangeColor(this)" />
+                    <!-- <button class="font-color"></button> -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer></footer>
+
+    <script src="js/services/meme-service.js"></script>
+    <script src="js/gallery-controller.js"></script>
+    <script src="js/meme-controller.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+.gallery-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 150px));
+    /* grid-template-rows: auto; */
+   justify-content: center;
+    gap: 20px;
+    transition: 0.4s;
+}
+
+.gallery-container .img-container{
+    /* if im changing the img to absolute
+     so the DOM will stay the same */
+    width: 150px;
+    height: 150px;
+}
+
+.gallery-img{
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    box-shadow: 0px 3px 10px 0px black;
+    cursor: pointer;
+}
+
+.gallery-img:hover{
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    box-shadow: 0px 3px 20px 0px black;
+    transition: .3s;
+    transform: translate(-5px,-5px);
+}

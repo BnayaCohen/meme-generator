@@ -1,0 +1,15 @@
+* {
+    box-sizing: border-box;
+    font-family: poppins;
+}
+
+body {
+    background-color: #22252c;
+}
+
+main{
+    border-radius: 10px;
+    background-color: #383b42;
+    margin-top: 15px;
+    padding: 20px 15px;
+}
