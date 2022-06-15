@@ -1,11 +1,11 @@
 /* MOBILE ONLY */
-@media (max-width: 740px) {
+@media (max-width: 640px) {
     :root {
-        --gallery-img-width:300px;
-        --gallery-img-height:300px;
+        --gallery-img-width:250px;
+        --gallery-img-height:250px;
     }
     .main-layout {
-        min-width: 680px;
+        min-width: 600px;
         margin: 10px;
     }
 
