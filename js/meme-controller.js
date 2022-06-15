@@ -28,7 +28,7 @@ function renderMeme() {
 function renderLine(line, isAddFocus) {
     if (isAddFocus) {
         gCtx.beginPath()
-        gCtx.rect(10, line.pos.y - line.size-5, 280, line.size * 1.5)
+        gCtx.rect(10, line.pos.y - line.size-5, 480, line.size * 1.5)
         gCtx.lineWidth = 1.5
         gCtx.strokeStyle = 'grey'
         gCtx.stroke();

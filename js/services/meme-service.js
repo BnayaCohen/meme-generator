@@ -38,18 +38,18 @@ function addLine() {
     switch (gMeme.lines.length) {
         case 0: posY = 50
             break
-        case 1: posY = 250
+        case 1: posY = 450
             break
-        default: posY = 150
+        default: posY = 250
             break
     }
     //creating new line
     var newLine = {
         txt: 'Enter Text Here',
-        size: 25,
+        size: 40,
         align: 'center',
         color: 'white',
-        pos: { x: 150, y: posY }
+        pos: { x: 250, y: posY }
     }
     gMeme.lines.push(newLine)
 }
@@ -78,17 +78,17 @@ function _createMeme(imgIdx) {
         selectedLineIdx: 0,
         lines: [{
             txt: 'Enter Text Here',
-            size: 25,
+            size: 40,
             align: 'center',
             color: 'white',
-            pos: { x: 150, y: 50 }
+            pos: { x: 250, y: 80 }
         },
         {
             txt: 'Enter Text Here',
-            size: 25,
+            size: 40,
             align: 'center',
             color: 'blue',
-            pos: { x: 150, y: 250 }
+            pos: { x: 250, y: 450 }
         },
         ]
     }
