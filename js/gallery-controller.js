@@ -21,7 +21,7 @@ function onImageSelect(imgIdx) {
 
 function onShowGallery(){
     document.querySelector('.gallery-container').style.display = 'grid'
-    document.querySelector('.filters-container').style.display = 'block'
+    document.querySelector('.filters-container').style.display = 'flex'
     document.querySelector('.edit-container').style.display = 'none'
     document.body.classList.remove('menu-open')
 }
