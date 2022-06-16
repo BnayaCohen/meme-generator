@@ -8,7 +8,9 @@ function uploadImg() {
     function onSuccess(uploadedImgUrl) {
         const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)//encode the instance of certain characters in the url
         //redirect to a post in facebook with the image we uploaded
-        window.location.href = `https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}`
+        setTimeout(() => {
+             window.location.href = `https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}`
+        }, 500)
     }
     //send the image to the server
     doUploadImg(imgDataUrl, onSuccess);

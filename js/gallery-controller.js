@@ -1,5 +1,6 @@
 'use strict'
 
+const GALLERY_IMG_WIDTH = 200
 var gKeywordSearchCountMap = {
     'funny': 0, 'cat': 0, 'baby': 0, 'man': 0, 'politics': 0, 'disney': 0, 'win': 0, 'sport': 0, 'sunglasses': 0, 'talk': 0, 'putin': 0, 'cartoon': 0, 'dog': 0
 }
@@ -9,8 +10,8 @@ function renderGallery(imgs = getImages()) {
     gIsMyMemes = false
     var imgsHtml = imgs.map(img =>
         `<div class="img-container" onClick="onImageSelect(${img.id})">
-         <img class="gallery-img" src="${img.url}">
-         </div>`)
+         <img  class="gallery-img" src="${img.url}">
+         </div>` )
     document.querySelector('.gallery-container').innerHTML = imgsHtml.join('')
 }
 
@@ -53,6 +54,14 @@ function onShowMyMemesGallery() {
 
 function onSaveMeme() {
     saveCurrMeme()
+    renderMyMemesGallery()
+    document.querySelector('.gallery-container').style.display = 'grid'
+    document.querySelector('.filters-container').style.display = 'flex'
+    document.querySelector('.edit-container').style.display = 'none'
+}
+
+function onDeleteMeme(){
+    deleteCurrMeme()
     renderMyMemesGallery()
     document.querySelector('.gallery-container').style.display = 'grid'
     document.querySelector('.filters-container').style.display = 'flex'

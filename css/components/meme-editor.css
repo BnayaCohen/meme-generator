@@ -9,6 +9,7 @@
     border-radius: 20px;
     background-color: #ebeef311;
     padding: 10px 5px 0 5px;
+    margin-bottom: auto;
 }
 
 .edited-meme .edit-meme-canvas {

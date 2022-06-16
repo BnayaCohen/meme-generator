@@ -10,7 +10,7 @@
 }
 
 .main-logo {
-    background: url("/img/LOGO/LOGO.png");
+    background: url("../../img/LOGO/LOGO.png");
     background-position: center center;
     background-size: cover;
     width: 14.6875rem;

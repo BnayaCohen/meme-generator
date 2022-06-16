@@ -2,7 +2,7 @@
 
 const STORAGE_KEY = 'memesDB'
 
-var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
+// var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 var gMeme
 var gMyMemes// The array includes idx 0 for id, and idx 1 for the meme object
 var gCurrMyMemeId
@@ -11,6 +11,8 @@ var gIsReEditedMeme
 _loadMyMemes()
 
 function setRandomMeme() {
+    const imgCount = getImages().length
+    const selectedImgId = getRandomIntInclusive(1, imgCount)
     var linesArray = []
     linesArray.push(_createLine({
         txt: getRandomSentence(),
@@ -22,13 +24,12 @@ function setRandomMeme() {
     if (getRandomIntInclusive(0, 1)) {// randmoly sets if rather be second row
         const newLine = _createLine({
             txt: getRandomSentence(), size: getRandomIntInclusive(25, 40),
-            color: getRandomColor(), strokeColor: getRandomColor(), pos: { x: 250, y: 450 }
+            color: getRandomColor(), strokeColor: getRandomColor(), pos: { x: 250, y: getImgHeight(selectedImgId) - 50 }
         })
         linesArray.push(newLine)
     }
 
-    const imgCount = getImages().length
-    gMeme = _createMeme({ selectedImgId: getRandomIntInclusive(1, imgCount), lines: linesArray })
+    gMeme = _createMeme({ selectedImgId, lines: linesArray })
 }
 
 function getMeme() {
@@ -45,16 +46,43 @@ function getMemeImgSrc(meme) {
     return img.url
 }
 
+function getImgHeight(imageId) {
+    const img = new Image()
+    img.src = getImages()[imageId - 1].url
+    const canvasWidth = 500
+    return (canvasWidth * img.height) / img.width
+}
+
 function getMyMemes() {
     return gMyMemes
+}
+
+function getEmojiIdx(id) {
+    return gMeme.emojis.findIndex(emoji => emoji.emojiId === id)
 }
 
 function updateMemeLineText(txt) {
     gMeme.lines[gMeme.selectedLineIdx].txt = txt
 }
 
-function updateMemeLineSize(fontDiff) {
-    gMeme.lines[gMeme.selectedLineIdx].size += fontDiff
+function updateLinePos(dx, dy, gCurrLineIdx) {
+    gMeme.lines[gCurrLineIdx].pos.x += dx
+    gMeme.lines[gCurrLineIdx].pos.y += dy
+}
+
+function updateEmojiePos(dx, dy, currEmojiId) {
+    var emojiIdx = getEmojiIdx(currEmojiId)
+    gMeme.emojis[emojiIdx].pos.x += dx
+    gMeme.emojis[emojiIdx].pos.y += dy
+}
+
+function updateMemeLineSize(diff) {
+    gMeme.lines[gMeme.selectedLineIdx].size += diff
+}
+
+function updateMemeEmojiSize(diff, id) {
+    var emojiIdx = getEmojiIdx(id)
+    gMeme.emojis[emojiIdx].size += diff
 }
 
 function updateMemeLineColor(fontColor) {
@@ -68,15 +96,15 @@ function updateLineIdx(idx = -1) {
     } else gMeme.selectedLineIdx = idx
 }
 
-function addLine() {
+function addLine(canvasHeight) {
     // calculating pos for first line, second line and the rest in the middle
     var posY
     switch (gMeme.lines.length) {
         case 0: posY = 50
             break
-        case 1: posY = 450
+        case 1: posY = canvasHeight - 50
             break
-        default: posY = 250
+        default: posY = 20 + canvasHeight / 2
             break
     }
     //creating new line and add it to the lines array
@@ -100,6 +128,13 @@ function deleteFocusedLine() {
         gMeme.selectedLineIdx--
 }
 
+function deleteFocusedEmoji(emojiId) {
+    // in case there are no lines left
+    if (gMeme.emojis.length === 0) return
+    const emojiIdx = gMeme.emojis.findIndex(emoji => emoji.emojiId === emojiId)
+    gMeme.emojis.splice(emojiIdx, 1)
+}
+
 function getImagesByFilter(keyword) {
     let imgsFiltered = []
     getImages().forEach(img => { if (img.keywords.includes(keyword)) imgsFiltered.push(img) })
@@ -109,12 +144,16 @@ function getImagesByFilter(keyword) {
 function setNewMeme(imgIdx) {
     gIsReEditedMeme = false
     gMeme = _createMeme({ selectedImgId: imgIdx })
+    const elActionBtns = document.querySelector('.delete-meme-btn')
+    elActionBtns.style.display = 'none'
 }
 
 function setMyMeme(myMemeId) {
     gCurrMyMemeId = myMemeId
     gIsReEditedMeme = true
     gMeme = getMyMemeById(myMemeId)[1]
+    const elActionBtns = document.querySelector('.delete-meme-btn')
+    elActionBtns.style.display = 'block'
 }
 
 function _createMeme({ selectedImgId, lines = [_createLine({})], emojis = [] }) {
@@ -143,6 +182,7 @@ function _createEmoji({ emojiId = makeId(), emoji = '', pos = { x: 250, y: 80 } 
     return {
         emojiId,
         theEmoji: emoji,
+        size: 30,
         pos,
     }
 }
@@ -175,9 +215,14 @@ function saveCurrMeme() {
     if (gIsReEditedMeme) {
         const currMyMemeIdx = gMyMemes.findIndex(myMeme => myMeme[0] === gCurrMyMemeId)
         gMyMemes[currMyMemeIdx] = [gCurrMyMemeId, gMeme]
-        // var currMyMeme = getMyMemeById(gCurrMyMemeId)
-        // currMyMeme = gMeme
     } else gMyMemes.push([makeId(), gMeme])
+
+    _saveMemesToStorage()
+}
+
+function deleteCurrMeme() {
+    const currMyMemeIdx = gMyMemes.findIndex(myMeme => myMeme[0] === gCurrMyMemeId)
+    gMyMemes.splice(currMyMemeIdx, 1)
 
     _saveMemesToStorage()
 }
