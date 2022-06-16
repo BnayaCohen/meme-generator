@@ -4,14 +4,16 @@
 }
 
 body {
-    background-color: #22252c;
-    margin: 0 auto;
+    background-color: var(--main-bg-clr);
 }
 
-main{
+main {
     border-radius: 10px;
-    background-color: #383b42;
-    margin:10px 10px 10px 15px;
+    background-color: var(--main-content-clr);
+    margin: 10px 10px 10px 15px;
     padding: 20px 15px;
-    /* max-width: 1250px; */
+}
+
+footer{
+    padding: 20px 0;
 }

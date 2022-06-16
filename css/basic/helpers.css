@@ -34,3 +34,22 @@
 .fa.fa-nav-sign::before {
     content: "\f0c9";
 }
+
+.fa.fa-arrows::before {
+    content: "\f0ec";
+}
+
+.fa.fa-delete::before {
+    content: "\f2ed";
+}
+
+.fa.fa-add::before {
+    content: "\2b";
+}
+
+.fa.fa-search::before {
+    content: "\f002";
+    background: -webkit-linear-gradient(-86deg, #33be6d 0%, #0c98b9 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

@@ -1,6 +1,11 @@
 /* vars */
 :root {
-    --bg-header: #5970c1;
+    --main-bg-clr: #22252c;
+    --main-content-clr:#383b42;
+    --bg-clr1:#ebeef3;
+    
+    --clr1:#fefefe;
+    --clr2:#21ac91;
 
     --gallery-img-width:200px;
     --gallery-img-height:200px;

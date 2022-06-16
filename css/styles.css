@@ -13,7 +13,6 @@
 @import 'components/meme-editor.css';
 @import 'components/gallery.css';
 @import 'components/screen.css';
-/*@import 'components/footer.css'; */
 
-/* Media Queries */
+/* MEDIA QUERIES FOR 'DESKTOP FIRST' */
 @import 'mq/mq.css';

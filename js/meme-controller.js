@@ -22,13 +22,18 @@ function renderMeme() {
             if (i === currMeme.selectedLineIdx) renderLine(line, true)
             else renderLine(line, false)
         })
+
+        currMeme.emojis.forEach(emoji => {
+            gCtx.font = `30px`
+            gCtx.fillText(emoji.theEmoji, emoji.pos.x, emoji.pos.y)
+        })
     }
 }
 
 function renderLine(line, isAddFocus) {
     if (isAddFocus) {
         gCtx.beginPath()
-        gCtx.rect(10, line.pos.y - line.size-5, 480, line.size * 1.5)
+        gCtx.rect(10, line.pos.y - line.size - 5, 480, line.size * 1.5)
         gCtx.lineWidth = 1.5
         gCtx.strokeStyle = 'grey'
         gCtx.stroke();
@@ -37,8 +42,8 @@ function renderLine(line, isAddFocus) {
     gCtx.fillStyle = line.color
     gCtx.textAlign = line.align
     gCtx.fillText(line.txt, line.pos.x, line.pos.y)
-    gCtx.lineWidth = 0.5;
-    gCtx.strokeStyle = 'black';
+    gCtx.lineWidth = 1;
+    gCtx.strokeStyle = line.strokeColor;
     gCtx.strokeText(line.txt, line.pos.x, line.pos.y)
 }
 
@@ -53,25 +58,34 @@ function onChangeFontSize(fontDiff) {
 }
 
 function onChangeColor(elColorPicker) {
-    updateMemeLineColor( elColorPicker.value)
+    updateMemeLineColor(elColorPicker.value)
     renderMeme()
 }
 
-function onSwitchLine(){
+function onSwitchLine() {
     updateLineIdx()
     renderMeme()
 }
 
-function onAddLine(){
+function onAddLine() {
     addLine()
     renderMeme()
 }
 
-function onDeleteLine(){
+function onDeleteLine() {
     deleteFocusedLine()
     renderMeme()
 }
 
-function onToggleMenu() {
-    document.body.classList.toggle('menu-open')
+function onImFlexible() {
+    setRandomMeme()
+    renderMeme()
+    document.querySelector('.gallery-container').style.display = 'none'
+    document.querySelector('.filters-container').style.display = 'none'
+    document.querySelector('.edit-container').style.display = 'flex'
+}
+
+function onAddEmoji(emoji){
+    addEmoji(emoji)
+    renderMeme()///////
 }

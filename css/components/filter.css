@@ -1,5 +1,52 @@
 /* FILTER*/
 
-.filters-container{
-    padding-bottom:  30px;
+.filters-container {
+    margin-bottom: 30px;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.filters-container .search-keyword-container {
+    border-radius: 29px;
+    background-color: var(--main-bg-clr);
+    font-size: 1.2rem;
+    min-width: 200px;
+    padding: 10px 20px;
+    align-items: center;
+}
+
+.search-keyword-container .search-input {
+    background-color: #00000000;
+    border-radius: 29px;
+    font-size: 1.3rem;
+    font-weight: 300;
+    min-width: 140px;
+    color: var(--clr1);
+    border: none;
+    margin-right: 5px;
+}
+
+.filters-container .filter-keywords {
+    box-shadow: 0 3px 6px 1px rgba(0, 0, 0, 0.15);
+    border-radius: 25px;
+    background-color: #fefefe40;
+    color: var(--clr1);
+    padding: 5px 15px;
+    margin: 0 10px;
+    font-size: 1.1rem;
+    font-weight: 300;
+}
+
+.filters-container .more-btn {
+    background-image: linear-gradient(-86deg, #33be6d 0%, #0c98b9 100%);
+    box-shadow: 0 3px 6px 1px rgba(0, 0, 0, 0.15);
+    color: var(--clr1);
+    border-radius: 1.25rem;
+    border: none;
+    cursor: pointer;
+    font-weight: 300;
+    font-size: 1.125rem;
+    line-height: 2rem;
+    padding: 0 20px;
+
 }
