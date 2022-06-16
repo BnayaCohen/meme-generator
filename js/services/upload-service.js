@@ -1,5 +1,5 @@
 'use strict'
-
+var gHref
 
 function uploadImg() {
     const imgDataUrl = gCanvas.toDataURL("image/jpeg")
@@ -7,11 +7,8 @@ function uploadImg() {
     // A function to be called if request succeeds
     function onSuccess(uploadedImgUrl) {
         const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)//encode the instance of certain characters in the url
-        //create a link that on click will make a post in facebook with the image we uploaded
-        document.querySelector('.share-container').innerHTML = `
-        <a class="btn" href="https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}'); return false;">
-           Share To Facebook   
-        </a>`
+        //redirect to a post in facebook with the image we uploaded
+        window.location.href = `https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}`
     }
     //send the image to the server
     doUploadImg(imgDataUrl, onSuccess);

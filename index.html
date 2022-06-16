@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-    
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Meme-Gen</title>
-        <link rel="stylesheet" href="css/styles.css">
-    </head>
-    
-    <body onload="init()">
-        <div class="main-screen" onclick="onToggleMenu()"></div>
-        <datalist id="search-list"></datalist>
-        
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme-Gen</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body onload="init()">
+    <div class="main-screen" onclick="onToggleMenu()"></div>
+    <datalist id="search-list"></datalist>
+
     <!-- HEADER -->
     <header class="main-header main-layout flex space-between align-center">
         <div class="main-logo"></div>
@@ -30,7 +30,8 @@
     <main class="main-content main-layout">
         <section class="filters-container flex">
             <div class="search-keyword-container flex space-between">
-                <input class="search-input" list="search-list" type="text" onkeyup="onShowKeyWordList(this)" onchange="onSearchKeyword(this)" placeholder="Search">
+                <input class="search-input" list="search-list" type="text" onkeyup="onShowKeyWordList(this)"
+                    onchange="onSearchKeyword(this)" placeholder="Search">
                 <div class="fa fa-search"></div>
             </div>
 
@@ -38,7 +39,7 @@
             <button class="more-btn">More</button>
         </section>
 
-        <button class="btn" onclick="onImFlexible()">I'm Flexible</button>
+        <button class="im-flexible-btn" onclick="onImFlexible()">I'm Flexible</button>
 
         <section class="gallery-container">
             <!-- INJECTED GALLERY IMAGES FROM JS -->
@@ -70,7 +71,14 @@
                     <div class="emoji" onclick="onAddEmoji('🤮')">🤮</div>
                     <div class="emoji" onclick="onAddEmoji('😹')">😹</div>
                 </div>
-                <button class="save-meme-btn btn" onclick="onSaveMeme()">Save Meme</button>
+
+                <div class="action-btns flex flex-column">
+                    <button class="save-meme-btn btn" onclick="onSaveMeme()">Save Meme</button>
+                    <button onmouseover="onPrepToDownload()" onmouseleave="onLeaveDownload()">
+                         <a class="download-meme-btn btn" onclick="onDownloadMeme(this)"
+                            download="Your-Meme">Download</a></button>
+                    <button class="share-meme-btn btn" onclick="onShareMeme()">Share</button>
+                </div>
             </div>
         </section>
     </main>

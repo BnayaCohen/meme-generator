@@ -61,9 +61,11 @@ function updateMemeLineColor(fontColor) {
     gMeme.lines[gMeme.selectedLineIdx].color = fontColor
 }
 
-function updateLineIdx() {
-    var idx = gMeme.selectedLineIdx
-    gMeme.selectedLineIdx = idx + 1 === gMeme.lines.length ? 0 : idx + 1
+function updateLineIdx(idx = -1) {
+    if (idx === -1) {
+        var idx = gMeme.selectedLineIdx
+        gMeme.selectedLineIdx = idx + 1 === gMeme.lines.length ? 0 : idx + 1
+    } else gMeme.selectedLineIdx = idx
 }
 
 function addLine() {
@@ -140,7 +142,7 @@ function _createLine({ txt = 'Enter Text Here', size = 40,
 function _createEmoji({ emojiId = makeId(), emoji = '', pos = { x: 250, y: 80 } }) {
     return {
         emojiId,
-        theEmoji:emoji,
+        theEmoji: emoji,
         pos,
     }
 }

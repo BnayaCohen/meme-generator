@@ -31,3 +31,16 @@
     transition: .3s;
     transform: translateY( -5px);
 }
+
+.im-flexible-btn{
+    background-color: var(--clr2);
+    border: none;
+    border-radius: 20px;
+    display: block;
+margin: 0 auto 10px;
+padding: 5px 15px;
+}
+
+.im-flexible-btn:hover{
+    background-color: var(--clr1);
+}
