@@ -1,35 +1,31 @@
 .gallery-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(var(--gallery-img-width), var(--gallery-img-width)));
-    /* grid-template-rows: auto; */
+    grid-template-columns: repeat(auto-fit, minmax(var(--gallery-img-width), 1fr));
     justify-content: center;
+    align-items: center;
     gap: 20px;
     transition: 0.4s;
 }
 
 .gallery-container .img-container {
-    /* if im changing the img to absolute
-     so the DOM will stay the same */
-    /* position: relative; */
-    width: var(--gallery-img-width);
-    /* height: var(--gallery-img-height); */
+   margin: 0 auto;
 }
 
 .gallery-img {
     width: var(--gallery-img-width);
-    /* height: var(--gallery-img-height); */
     border-radius: 10px;
     box-shadow: 0px 3px 10px 0px black;
     cursor: pointer;
 }
 
 .gallery-img:hover {
-    /* position: absolute; */
-    width: var(--gallery-img-width);
-    /* height: var(--gallery-img-height); */
     box-shadow: 0px 3px 20px 0px black;
     transition: .3s;
-    transform: translateY(-5px);
+    transform: scale(1.2);
+}
+
+.gallery-img:not(:hover) {
+    transition: .3s;
 }
 
 .im-flexible-btn {

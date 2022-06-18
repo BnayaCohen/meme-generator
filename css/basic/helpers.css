@@ -25,6 +25,12 @@
     list-style-type: none;
 }
 
+.hide-element {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
 /* FONT AWESOME */
 
 .fa {
@@ -39,7 +45,8 @@
     content: "\f0ec";
 }
 
-.fa.fa-delete::before {
+.fa-delete::before {
+    font-family: fa;
     content: "\f2ed";
 }
 
@@ -52,4 +59,47 @@
     background: -webkit-linear-gradient(-86deg, #33be6d 0%, #0c98b9 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+.fa.fa-A-plus::before {
+    content: "\41\2b";
+}
+
+.fa.fa-A-minus::before {
+    content: "\41\f068";
+}
+
+.fa.fa-arrow-up::before {
+    content: "\f102";
+}
+
+.fa.fa-arrow-down::before {
+    content: "\f103";
+}
+
+.fa.fa-color::before {
+    content: "\f53f";
+}
+
+.fa.fa-color-stroke::before {
+    content: "\f1fc";
+}
+
+.fa.fa-text-uppercase::before {
+    content: "\f031";
+}
+
+.fa-download::before {
+    font-family: fa;
+    content: "\f019";
+}
+
+.fa-save::before {
+    font-family: fa;
+    content: "\f0c7";
+}
+
+.fa-share::before {
+    font-family: fa;
+    content: "\f1e0";
 }

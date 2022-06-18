@@ -7,11 +7,19 @@ var gCurrLineIdx
 var gCurrEmojiId
 var gStartPos
 var gIsClicked
-var gLineOrEmoji = 0
+var gLineOrEmoji = 1
 
 function init() {
     gCanvas = document.querySelector('.edit-meme-canvas')
     gCtx = gCanvas.getContext('2d')
+
+    // set the keywords sizes in the filter area
+    const filterKeywords = document.querySelectorAll('.filter-keywords p')
+    filterKeywords.forEach(elKeyword=>{
+        const currKeyCount = gKeywordSearchCountMap[elKeyword.innerText]
+        elKeyword.style.fontSize = (currKeyCount + 17)/16 + 'rem'
+    })
+    
 
     renderGallery()
     addListeners()
@@ -38,7 +46,7 @@ function renderMeme(isIncludeFocus = true) {
 }
 
 function renderLine(line, isAddFocus) {
-    gCtx.font = `${line.size}px Impact`
+    gCtx.font = `${line.size}px ${line.font}`
     gCtx.fillStyle = line.color
     gCtx.textAlign = line.align
     if (isAddFocus) {
@@ -60,7 +68,7 @@ function renderEmoji(emoji, isAddFocus) {
     gCtx.fillText(emoji.theEmoji, emoji.pos.x, emoji.pos.y)
     if (isAddFocus) {
         gCtx.beginPath()
-        gCtx.rect(emoji.pos.x - (emoji.size*0.8), emoji.pos.y - (emoji.size * 1.2), emoji.size * 1.6, emoji.size + emoji.size*0.7)
+        gCtx.rect(emoji.pos.x - (emoji.size * 0.8), emoji.pos.y - (emoji.size * 1.2), emoji.size * 1.6, emoji.size + emoji.size * 0.7)
         gCtx.lineWidth = 1.5
         gCtx.strokeStyle = '#222222'
         gCtx.stroke();
@@ -72,11 +80,21 @@ function setLineText(elLineTxt) {
     renderMeme()
 }
 
-function onChangeFontSize(fontDiff) {
+function onChangeFontSize(diff) {
     switch (gLineOrEmoji) {
-        case 1: updateMemeLineSize(fontDiff)
+        case 1: updateMemeLineSize(diff)
             break
-        case 2: updateMemeEmojiSize(fontDiff,gCurrEmojiId)
+        case 2: updateMemeEmojiSize(diff, gCurrEmojiId)
+            break
+    }
+    renderMeme()
+}
+
+function onMoveText(diff) {
+    switch (gLineOrEmoji) {
+        case 1: updateLinePos(0, diff, gCurrLineIdx)
+            break
+        case 2: updateEmojiePos(0, diff, gCurrEmojiId)
             break
     }
     renderMeme()
@@ -87,7 +105,23 @@ function onChangeColor(elColorPicker) {
     renderMeme()
 }
 
+function onChangeStroke(elColorPicker) {
+    updateMemeLineStrokeColor(elColorPicker.value)
+    renderMeme()
+}
+
+function onTextToUpperCase(){
+    updateTextToUppercase()
+    renderMeme()
+}
+
+function onChangeFont(elSelector){
+    updateMemeLineFont(elSelector.value)
+    renderMeme()
+}
+
 function onSwitchLine() {
+    gLineOrEmoji = 1
     updateLineIdx()
     renderMeme()
 }
@@ -229,3 +263,4 @@ function getEvPos(ev) {
     }
     return pos
 }
+

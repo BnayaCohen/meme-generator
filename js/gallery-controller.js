@@ -2,7 +2,8 @@
 
 const GALLERY_IMG_WIDTH = 200
 var gKeywordSearchCountMap = {
-    'funny': 0, 'cat': 0, 'baby': 0, 'man': 0, 'politics': 0, 'disney': 0, 'win': 0, 'sport': 0, 'sunglasses': 0, 'talk': 0, 'putin': 0, 'cartoon': 0, 'dog': 0
+    'funny': 17, 'cat': 1, 'baby': 1, 'man': 10, 'politics': 25, 'disney': 2, 'win': 1, 'sport': 1, 'sunglasses': 1, 'talk': 1, 'putin': 1, 'cartoon': 1, 'dog': 30
+
 }
 var gIsMyMemes
 
@@ -12,7 +13,10 @@ function renderGallery(imgs = getImages()) {
         `<div class="img-container" onClick="onImageSelect(${img.id})">
          <img  class="gallery-img" src="${img.url}">
          </div>` )
-    document.querySelector('.gallery-container').innerHTML = imgsHtml.join('')
+    document.querySelector('.gallery-container').innerHTML = `<div class="img-container" onClick="document.querySelector('.file-input').click()">
+         <img  class="gallery-img" src="img/upload-photo.png">
+         </div>`
+    document.querySelector('.gallery-container').innerHTML += imgsHtml.join('')
 }
 
 function renderMyMemesGallery() {
@@ -23,17 +27,6 @@ function renderMyMemesGallery() {
          <img class="gallery-img" src="${getMemeImgSrc(myMeme[1])}">
          </div>`)
     document.querySelector('.gallery-container').innerHTML = imgsHtml.join('')
-}
-
-function onImageSelect(imgIdx, myMemeId = '') {
-    // Checks if the selected image is my meme or new meme and generate
-    if (gIsMyMemes) setMyMeme(myMemeId)
-    else setNewMeme(imgIdx)
-
-    renderMeme()
-    document.querySelector('.gallery-container').style.display = 'none'
-    document.querySelector('.filters-container').style.display = 'none'
-    document.querySelector('.edit-container').style.display = 'flex'
 }
 
 function onShowGallery() {
@@ -52,6 +45,17 @@ function onShowMyMemesGallery() {
     document.body.classList.remove('menu-open')
 }
 
+function onImageSelect(imgIdx, myMemeId = '') {
+    // Checks if the selected image is my meme or new meme and generate
+    if (gIsMyMemes) setMyMeme(myMemeId)
+    else setNewMeme(imgIdx)
+
+    renderMeme()
+    document.querySelector('.gallery-container').style.display = 'none'
+    document.querySelector('.filters-container').style.display = 'none'
+    document.querySelector('.edit-container').style.display = 'flex'
+}
+
 function onSaveMeme() {
     saveCurrMeme()
     renderMyMemesGallery()
@@ -60,7 +64,7 @@ function onSaveMeme() {
     document.querySelector('.edit-container').style.display = 'none'
 }
 
-function onDeleteMeme(){
+function onDeleteMeme() {
     deleteCurrMeme()
     renderMyMemesGallery()
     document.querySelector('.gallery-container').style.display = 'grid'
@@ -80,6 +84,39 @@ function onShowKeyWordList(elInput) {
 function onSearchKeyword(elInput) {
     const filteredImgs = getImagesByFilter(elInput.value)
     renderGallery(filteredImgs)
+}
+
+function onAddKeywordCount(elKeyword) {
+    // adding keyword count to the map
+    const currKeyCount = gKeywordSearchCountMap[elKeyword.innerText]++
+    // calculate the text size so it would be acorrding to 'rem'
+    elKeyword.style.fontSize = (currKeyCount + 17)/16 + 'rem'
+    // showing the filtered gallery by the key word
+    const filteredImgs = getImagesByFilter(elKeyword.innerText)
+    renderGallery(filteredImgs)
+}
+
+function onUploadPhoto(ev) {
+    loadImageFromInput(ev, renderUserImg)
+}
+
+function loadImageFromInput(ev, onImageReady) {
+    var reader = new FileReader()
+    //after we read the file
+    reader.onload = function (event) {
+        var img = new Image()
+        // Render on canvas // run the callBack func , to render the img on the canvas
+        img.onload = onImageReady.bind(null, img)
+        img.src = event.target.result // put the img src from the file we read
+    }
+    reader.readAsDataURL(ev.target.files[0]) // read the file we picked
+}
+
+function renderUserImg(img) {
+    gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
+
+    setUserImg(img)
+    onImageSelect(0)// image index 0 means the photo is from the user
 }
 
 function onToggleMenu() {

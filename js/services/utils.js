@@ -23,23 +23,23 @@ function makeId(length = 6) {
 
 function getRandomSentence(){
   const idx= getRandomIntInclusive(0,14)
-  const sentences=[
-    "When you eat pizza",
-    "when you think CA is easy",
-    "i miss for loops",
-    "bootstrap is shit",
-    "only falafel",
-    "when you saw the pinball",
-    "have a good day",
-    "i dont know what else",
-    "think of something",
-    "this sprint is crazy",
-    "responsivness for the win",
-    "When you do git push",
-    "i like memes",
-    "shawarma is better than pizza",
-    "learn grid, it's good",
-  ]
-  return sentences[idx]
+  const memesSentences = [
+    'I never eat falafel',
+    'DOMS DOMS EVERYWHERE',
+    'Stop Using i in for loops',
+    'Armed in knowledge',
+    'Js error "Unexpected String"',
+    'One does not simply write js',
+    'I`m a simple man i see vanilla JS, i click like!',
+    'JS, HTML,CSS?? Even my momma can do that',
+    'May the force be with you',
+    'I know JS',
+    'JS Where everything is made up and the rules dont matter',
+    'Not sure if im good at programming or good at googling',
+    'But if we could',
+    'JS what is this?',
+    'Write hello world , add to cv 7 years experienced',
+  ];
+  return memesSentences[idx]
 }
 

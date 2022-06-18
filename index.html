@@ -10,8 +10,10 @@
 </head>
 
 <body onload="init()">
+    <!-- HTML HELPERS -->
     <div class="main-screen" onclick="onToggleMenu()"></div>
     <datalist id="search-list"></datalist>
+    <input type="file" class="file-input hide-element" name="image" onchange="onUploadPhoto(event)" />
 
     <!-- HEADER -->
     <header class="main-header main-layout flex space-between align-center">
@@ -34,9 +36,15 @@
                     onchange="onSearchKeyword(this)" placeholder="Search">
                 <div class="fa fa-search"></div>
             </div>
-
-            <h2 class="filter-keywords">Funny Animal Men Woman comic smile</h2>
+            
             <button class="more-btn">More</button>
+            <div class="filter-keywords flex align-center">
+                <p onclick="onAddKeywordCount(this)">funny</p>
+                <p onclick="onAddKeywordCount(this)">man</p>
+                <p onclick="onAddKeywordCount(this)">dog</p>
+                <p onclick="onAddKeywordCount(this)">politics</p>
+                <p onclick="onAddKeywordCount(this)">disney</p>
+            </div>
         </section>
 
         <button class="im-flexible-btn" onclick="onImFlexible()">I'm Flexible</button>
@@ -58,11 +66,26 @@
                     <button class="line-add btn fa fa-add" onclick="onAddLine()"></button>
                     <button class="line-delete btn fa fa-delete" onclick="onDeleteLine()"></button>
                 </div>
+                
                 <div class="modify-btns">
-                    <button class="font-increase btn" onclick="onChangeFontSize(1)">A+</button>
-                    <button class="font-decrease btn" onclick="onChangeFontSize(-1)">A-</button>
-                    <input class="font-clr-change btn" type="color" name="font-clr-change"
-                        onchange="onChangeColor(this)" />
+                    <button class="font-increase btn fa fa-A-plus" onclick="onChangeFontSize(1)"></button>
+                    <button class="font-decrease btn fa fa-A-minus" onclick="onChangeFontSize(-1)"></button>
+                    <button class="font-clr-change btn fa fa-color"
+                        onclick="document.querySelector('.fill-color').click()">
+                        <input class="fill-color hide-element" type="color" name="font-clr-change" value="#555555"
+                            onchange="onChangeColor(this)" /></button>
+                    <button class="font-clr-change btn fa fa-color-stroke"
+                        onclick="document.querySelector('.stroke-color').click()">
+                        <input class="stroke-color hide-element" type="color" name="font-stroke-change"
+                            onchange="onChangeStroke(this)" /></button>
+                    <button class="text-move-down btn fa fa-arrow-down" onclick="onMoveText(10)"></button>
+                    <button class="text-move-up btn fa fa-arrow-up" onclick="onMoveText(-10)"></button>
+                    <button class="text-uppercase btn fa fa-text-uppercase" onclick="onTextToUpperCase()"></button>
+                    <select class="font-selector btn" onclick="onChangeFont(this)">
+                        <option value="Impact">Impact</option>
+                        <option value="Arial">Arial</option>
+                        <option value="David">David</option>
+                    </select> 
                 </div>
 
                 <div class="emojis-container">
@@ -70,15 +93,23 @@
                     <div class="emoji" onclick="onAddEmoji('😱')">😱</div>
                     <div class="emoji" onclick="onAddEmoji('🤮')">🤮</div>
                     <div class="emoji" onclick="onAddEmoji('😹')">😹</div>
+                    <div class="emoji" onclick="onAddEmoji('🤓')">🤓</div>
+                    <div class="emoji" onclick="onAddEmoji('🤯')">🤯</div>
+                    <div class="emoji" onclick="onAddEmoji('😎')">😎</div>
+                    <div class="emoji" onclick="onAddEmoji('💀')">💀</div>
+                    <div class="emoji" onclick="onAddEmoji('😡')">😡</div>
+                    <div class="emoji" onclick="onAddEmoji('😭')">😭</div>
+                    <div class="emoji" onclick="onAddEmoji('🤑')">🤑</div>
+                    <div class="emoji" onclick="onAddEmoji('😑')">😑</div>
                 </div>
 
                 <div class="action-btns flex flex-column">
-                    <button class="delete-meme-btn btn" onclick="onDeleteMeme()">Delete Meme</button>
-                    <button class="save-meme-btn btn" onclick="onSaveMeme()">Save Meme</button>
-                    <button onmouseover="onPrepToDownload()" onmouseleave="onLeaveDownload()">
-                         <a class="download-meme-btn btn" onclick="onDownloadMeme(this)"
+                    <button class="delete-meme-btn btn fa-delete" onclick="onDeleteMeme()"> Delete Meme</button>
+                    <button class="save-meme-btn btn fa-save" onclick="onSaveMeme()"> Save Meme</button>
+                    <button class="download-meme-btn btn fa-download"  onmouseover="onPrepToDownload()" onmouseleave="onLeaveDownload()">
+                        <a onclick="onDownloadMeme(this)"
                             download="Your-Meme">Download</a></button>
-                    <button class="share-meme-btn btn" onclick="onShareMeme()">Share</button>
+                    <button class="share-meme-btn btn fa-share" onclick="onShareMeme()"> Share</button>
                 </div>
             </div>
         </section>
@@ -88,6 +119,7 @@
     <footer class="main-layout flex content-center">
         <div class="main-logo"></div>
     </footer>
+
 
     <script src="js/services/storage.service.js"></script>
     <script src="js/services/upload-service.js"></script>

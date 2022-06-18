@@ -4,6 +4,7 @@
     margin-bottom: 30px;
     align-items: center;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .filters-container .search-keyword-container {
@@ -13,6 +14,8 @@
     min-width: 200px;
     padding: 10px 20px;
     align-items: center;
+    margin-right: 10px;
+    margin-bottom: 10px;
 }
 
 .search-keyword-container .search-input {
@@ -31,10 +34,16 @@
     border-radius: 25px;
     background-color: #fefefe40;
     color: var(--clr1);
-    padding: 5px 15px;
+    padding: 0 10px;
     margin: 0 10px;
-    font-size: 1.1rem;
     font-weight: 300;
+    gap: 10px;
+    cursor: pointer;
+    /* display: block; */
+}
+
+.filter-keywords p{
+margin: 0;
 }
 
 .filters-container .more-btn {
@@ -46,7 +55,7 @@
     cursor: pointer;
     font-weight: 300;
     font-size: 1.125rem;
-    line-height: 2rem;
+    height: 2rem;
     padding: 0 20px;
 
 }

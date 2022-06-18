@@ -60,19 +60,16 @@
 
 .line-change-btns .line-switch {
     background-image: linear-gradient(-38deg, #66c4dc 0%, #40b1ce 50%, #0c98bb 100%);
-    background-color: var(--bg-clr1);
     box-shadow: 1px 2px 0 #048b97, inset 0 3px 0 rgba(255, 255, 255, 0.58);
 }
 
 .line-change-btns .line-add {
     background-image: linear-gradient(-38deg, #42eb5c 0%, #37b34a 100%);
-    background-color: var(--bg-clr1);
     box-shadow: 1px 2px 0 #015d33, inset 0 3px 0 rgba(255, 255, 255, 0.58);
 }
 
 .line-change-btns .line-delete {
     box-shadow: 1px 2px 0 #8c0606, inset 0 3px 0 rgba(255, 255, 255, 0.58);
-    background-color: var(--bg-clr1);
     background-image: linear-gradient(-38deg, #cf1d37 0%, #cf1d37 1%, #f05036 100%);
 }
 
@@ -93,11 +90,12 @@
     background-color: #ffffff;
     width: 3.125rem;
     height: 3.125rem;
-    font-size: 2rem;
+    font-size: 1.3rem;
     cursor: pointer;
     padding: 0;
     margin: 0 7px;
     text-align: center;
+  
 }
 
 .modify-btns .btn:hover {
@@ -106,9 +104,14 @@
     transition: .1s;
 }
 
+.modify-btns .font-selector{
+      grid-column: span 3;
+      width: 100%;
+}
+
 .emojis-container{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(50px, 50px));
+    grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
     border-radius: 30px;
     background-color: #ffffff;
     font-size: 30px;
@@ -120,4 +123,46 @@
 
 .emoji:hover{
     background-color: #555555;
+    cursor: pointer;
+ 
+}
+
+.action-btns .btn{
+    margin: 5px auto;
+    padding: 5px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    color: #ffffff;
+}
+
+.action-btns .btn:hover {
+    box-shadow: 1px 3px 7px 4px rgb(14 11 11 / 72%);
+    transition: .1s;
+}
+
+.action-btns .delete-meme-btn{
+    box-shadow: 1px 2px 0 #8c0606, inset 0 3px 0 rgba(255, 255, 255, 0.58);
+    background-image: linear-gradient(-38deg, #cf1d37 0%, #cf1d37 1%, #f05036 100%);
+}
+
+.action-btns .save-meme-btn{
+    background-image: linear-gradient(-38deg, #42eb5c 0%, #37b34a 100%);
+    box-shadow: 1px 2px 0 #015d33, inset 0 3px 0 rgba(255, 255, 255, 0.58);
+}
+
+.action-btns .download-meme-btn{
+    background-image: linear-gradient(-38deg, #b166dc 0%, #a340ce 50%, #690cbb 100%);
+    box-shadow: 1px 2px 0 #460497, inset 0 3px 0 rgba(255, 255, 255, 0.58);
+}
+
+.action-btns .download-meme-btn a{
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.action-btns .share-meme-btn{
+    background-image: linear-gradient(-38deg, #6672dc 0%, #4061ce 50%, #0c52bb 100%);
+    box-shadow: 1px 2px 0 #043c97, inset 0 3px 0 rgba(255, 255, 255, 0.58);
 }
