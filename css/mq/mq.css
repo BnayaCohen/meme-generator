@@ -20,6 +20,11 @@
         background-color: #00000000;
         box-shadow: 0 0 black;
     }
+
+    .edit-container {
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 /* MOBILE */

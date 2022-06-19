@@ -58,18 +58,12 @@ function onImageSelect(imgIdx, myMemeId = '') {
 
 function onSaveMeme() {
     saveCurrMeme()
-    renderMyMemesGallery()
-    document.querySelector('.gallery-container').style.display = 'grid'
-    document.querySelector('.filters-container').style.display = 'flex'
-    document.querySelector('.edit-container').style.display = 'none'
+    onShowMyMemesGallery()
 }
 
 function onDeleteMeme() {
     deleteCurrMeme()
-    renderMyMemesGallery()
-    document.querySelector('.gallery-container').style.display = 'grid'
-    document.querySelector('.filters-container').style.display = 'flex'
-    document.querySelector('.edit-container').style.display = 'none'
+    onShowMyMemesGallery()
 }
 
 function onShowKeyWordList(elInput) {
@@ -90,7 +84,8 @@ function onAddKeywordCount(elKeyword) {
     // adding keyword count to the map
     const currKeyCount = gKeywordSearchCountMap[elKeyword.innerText]++
     // calculate the text size so it would be acorrding to 'rem'
-    elKeyword.style.fontSize = (currKeyCount + 17)/16 + 'rem'
+    if (currKeyCount < 55)
+        elKeyword.style.fontSize = (currKeyCount + 17) / 16 + 'rem'
     // showing the filtered gallery by the key word
     const filteredImgs = getImagesByFilter(elKeyword.innerText)
     renderGallery(filteredImgs)

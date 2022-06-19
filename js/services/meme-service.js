@@ -10,6 +10,9 @@ var gUserImg
 
 _loadMyMemes()
 
+//var lineWidth = gCtx.measureText(line.txt).width
+//var lineHeight = gCtx.measureText(line.txt).fontBoundingBoxDescent
+
 // sets a random meme with one or two random sentences
 function setRandomMeme() {
     const imgCount = getImages().length
@@ -57,6 +60,10 @@ function updateLinePos(dx, dy, gCurrLineIdx = gMeme.selectedLineIdx) {
 }
 
 function updateMemeLineSize(diff) {
+    // prevent from the text to be too small
+    if (gMeme.lines[gMeme.selectedLineIdx].size <= 15
+        && diff < 0) return
+
     gMeme.lines[gMeme.selectedLineIdx].size += diff
 }
 
@@ -77,10 +84,15 @@ function updateTextToUppercase() {
 }
 
 function updateLineIdx(idx = -1) {
-    if (idx === -1) {
+    if (idx === -1) {// in case the user pressed 'switch line' add 1 to the selected line index
         var idx = gMeme.selectedLineIdx
         gMeme.selectedLineIdx = idx + 1 === gMeme.lines.length ? 0 : idx + 1
-    } else gMeme.selectedLineIdx = idx
+    } else gMeme.selectedLineIdx = idx// in case he clicked with the mouse on the canvas sets the line index accurdinatly
+    document.querySelector('.meme-text-input').value = gMeme.lines[gMeme.selectedLineIdx].txt
+}
+
+function updateMemeLineRotation(rotationDiff) {
+    gMeme.lines[gMeme.selectedLineIdx].rotation +=rotationDiff
 }
 
 function addLine(canvasHeight) {
@@ -128,6 +140,11 @@ function updateEmojiePos(dx, dy, currEmojiId) {
 
 function updateMemeEmojiSize(diff, id) {
     var emojiIdx = getEmojiIdx(id)
+
+    // prevent from the emoji to be too small
+    if (gMeme.emojis[emojiIdx].size <= 15
+        && diff < 0) return
+
     gMeme.emojis[emojiIdx].size += diff
 }
 
@@ -221,6 +238,7 @@ function _createLine({ txt = 'Enter Text Here', font = 'Impact', size = 40,
         align,
         color,
         strokeColor,
+        rotation: 0,
         pos,
     }
 }
